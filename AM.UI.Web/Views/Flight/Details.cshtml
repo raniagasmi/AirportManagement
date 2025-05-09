@@ -1,0 +1,12 @@
+﻿@model AM.ApplicationCore.Domain.Flight
+
+<h2>Détails du vol @Model.FlightId</h2>
+
+<ul>
+    <li><strong>Départ :</strong> @Model.Departure</li>
+    <li><strong>Destination :</strong> @Model.Destination</li>
+    <li><strong>Durée estimée :</strong> @Model.EstimatedDuration</li>
+    <li><strong>Type d’avion :</strong> @Model.Plane?.PlaneType</li>
+</ul>
+
+<a asp-action="Index">⬅ Retour</a>

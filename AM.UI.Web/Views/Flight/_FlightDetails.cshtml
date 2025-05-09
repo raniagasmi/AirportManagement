@@ -1,0 +1,9 @@
+﻿@model AM.ApplicationCore.Domain.Flight
+
+<tr>
+    <td colspan="10" style="background-color: #f9f9f9">
+        <strong>Nombre de passagers :</strong> @Model.Passengers?.Count() ?? 0 <br />
+        <strong>Type d’avion :</strong> @Model.Plane?.PlaneType <br />
+        <strong>Capacité de l’avion :</strong> @Model.Plane?.Capacity
+    </td>
+</tr>

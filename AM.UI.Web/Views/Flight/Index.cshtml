@@ -1,0 +1,90 @@
+﻿@model IEnumerable<AM.ApplicationCore.Domain.Flight>
+
+@{
+    ViewData["Title"] = "Liste des vols";
+}
+
+<h1>Liste des vols</h1>
+<!-- Formulaire de recherche par date de départ -->
+<form asp-action="Index" method="get">
+    <fieldset>
+        <legend>Recherche</legend>
+        <label for="dateDepart">Saisir une date de départ :</label>
+        <input type="date" id="dateDepart" name="dateDepart" />
+        <input type="submit" value="Search" />
+    </fieldset>
+</form>
+
+<form asp-action="Sort">
+
+    <fieldset>
+
+        <input type="submit" value="Sort" />
+
+    </fieldset>
+
+</form>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Departure)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EffectiveArrival)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstimatedDuration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AirlineLogo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plane.Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pilot)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Departure)</td>
+                <td>@Html.DisplayFor(modelItem => item.Destination)</td>
+                <td>@Html.DisplayFor(modelItem => item.EffectiveArrival)</td>
+                <td>@Html.DisplayFor(modelItem => item.EstimatedDuration)</td>
+                <td>@Html.DisplayFor(modelItem => item.FlightDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.FlightId)</td>
+                <td>@Html.DisplayFor(modelItem => item.AirlineLogo)</td>
+                <td>@Html.DisplayFor(modelItem => item.Plane.Capacity)</td>
+                <td>
+                    <img src="~/uploads/@item.Pilot" width="50" height="50" />
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.FlightId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.FlightId }) |
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.FlightId }) |
+                </td>
+            </tr>
+            @Html.Partial("_FlightDetails", item)
+        }
+
+    </tbody>
+</table>
